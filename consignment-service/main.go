@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"log"
 
-	pb "github.com/EwanValentine/shippy/consignment-service/proto/consignment"
-	vesselProto "github.com/EwanValentine/shippy/vessel-service/proto/vessel"
 	micro "github.com/micro/go-micro"
+	pb "github.com/suyaoli/shippy/consignment-service/proto/consignment"
+	vesselProto "github.com/suyaoli/shippy/vessel-service/proto/vessel"
 	"golang.org/x/net/context"
 )
 
@@ -38,7 +38,7 @@ func (repo *ConsignmentRepository) GetAll() []*pb.Consignment {
 // in the generated code itself for the exact method signatures etc
 // to give you a better idea.
 type service struct {
-	repo Repository
+	repo         Repository
 	vesselClient vesselProto.VesselServiceClient
 }
 
@@ -51,7 +51,7 @@ func (s *service) CreateConsignment(ctx context.Context, req *pb.Consignment, re
 	// and the amount of containers as the capacity value
 	vesselResponse, err := s.vesselClient.FindAvailable(context.Background(), &vesselProto.Specification{
 		MaxWeight: req.Weight,
-		Capacity: int32(len(req.Containers)),
+		Capacity:  int32(len(req.Containers)),
 	})
 	log.Printf("Found vessel: %s \n", vesselResponse.Vessel.Name)
 	if err != nil {

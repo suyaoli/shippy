@@ -6,9 +6,8 @@ import (
 	"log"
 	"os"
 
-	pb "github.com/EwanValentine/shippy/consignment-service/proto/consignment"
 	microclient "github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/cmd"
+	pb "github.com/suyaoli/shippy/consignment-service/proto/consignment"
 	"golang.org/x/net/context"
 )
 
@@ -27,8 +26,6 @@ func parseFile(file string) (*pb.Consignment, error) {
 }
 
 func main() {
-
-	cmd.Init()
 
 	// Create new greeter client
 	client := pb.NewShippingServiceClient("go.micro.srv.consignment", microclient.DefaultClient)
