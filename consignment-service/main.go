@@ -6,10 +6,11 @@ import (
 	"fmt"
 	"log"
 
-	pb "github.com/EwanValentine/shippy/consignment-service/proto/consignment"
-	vesselProto "github.com/EwanValentine/shippy/vessel-service/proto/vessel"
-	"github.com/micro/go-micro"
 	"os"
+
+	"github.com/micro/go-micro"
+	pb "github.com/suyaoli/shippy/consignment-service/proto/consignment"
+	vesselProto "github.com/suyaoli/shippy/vessel-service/proto/vessel"
 )
 
 const (

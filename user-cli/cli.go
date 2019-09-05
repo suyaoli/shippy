@@ -4,18 +4,14 @@ import (
 	"log"
 	"os"
 
-	pb "github.com/EwanValentine/shippy/user-service/proto/user"
-	microclient "github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/cmd"
-	"golang.org/x/net/context"
 	"github.com/micro/cli"
 	"github.com/micro/go-micro"
+	microclient "github.com/micro/go-micro/client"
+	pb "github.com/suyaoli/shippy/user-service/proto/user"
+	"golang.org/x/net/context"
 )
 
-
 func main() {
-
-	cmd.Init()
 
 	// Create new greeter client
 	client := pb.NewUserServiceClient("go.micro.srv.user", microclient.DefaultClient)
@@ -35,7 +31,7 @@ func main() {
 				Usage: "Your password",
 			},
 			cli.StringFlag{
-				Name: "company",
+				Name:  "company",
 				Usage: "Your company",
 			},
 		),
@@ -51,10 +47,10 @@ func main() {
 			company := c.String("company")
 
 			r, err := client.Create(context.TODO(), &pb.User{
-				Name: name,
-				Email: email,
+				Name:     name,
+				Email:    email,
 				Password: password,
-				Company: company,
+				Company:  company,
 			})
 			if err != nil {
 				log.Fatalf("Could not create: %v", err)
